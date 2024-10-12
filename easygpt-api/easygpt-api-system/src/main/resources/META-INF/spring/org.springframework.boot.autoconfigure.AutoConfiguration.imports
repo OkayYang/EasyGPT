@@ -1,0 +1,3 @@
+com.easygpt.system.api.factory.RemoteUserFallbackFactory
+com.easygpt.system.api.factory.RemoteLogFallbackFactory
+com.easygpt.system.api.factory.RemoteFileFallbackFactory

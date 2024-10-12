@@ -1,0 +1,2 @@
+com.easygpt.common.log.service.AsyncLogService
+com.easygpt.common.log.aspect.LogAspect

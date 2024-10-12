@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.easygpt</groupId>
+        <artifactId>easygpt</artifactId>
+        <version>3.6.4</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>easygpt-common-log</module>
+        <module>easygpt-common-core</module>
+        <module>easygpt-common-redis</module>
+        <module>easygpt-common-seata</module>
+        <module>easygpt-common-swagger</module>
+        <module>easygpt-common-security</module>
+        <module>easygpt-common-datascope</module>
+        <module>easygpt-common-datasource</module>
+    </modules>
+
+    <artifactId>easygpt-common</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        easygpt-common通用模块
+    </description>
+
+</project>
