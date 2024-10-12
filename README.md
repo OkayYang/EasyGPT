@@ -142,6 +142,4 @@ curl -X POST http://localhost:8080/gpt/chat \
 本项目基于 MIT 许可证开源，详细信息请参阅 [LICENSE](LICENSE) 文件。
 ```
 
----
-
 
