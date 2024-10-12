@@ -42,7 +42,7 @@ cd easygpt
 bash
 复制代码
 cd api-gateway
-mvn spring-boot:run
+mvn spring-boot:runad
 
 cd ../gpt-service
 mvn spring-boot:run
