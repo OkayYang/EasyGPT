@@ -1,4 +1,4 @@
-非常抱歉，下面是纯 Markdown 格式的 `README.md`，你可以直接复制到你的 `README.md` 文件中使用。
+
 
 ```md
 # EasyGPT
@@ -144,4 +144,4 @@ curl -X POST http://localhost:8080/gpt/chat \
 
 ---
 
-这个格式是完全符合 Markdown 语法的，你可以将其直接复制到 `README.md` 文件中，GitHub 或其他 Markdown 编辑器会正确显示排版。
+
