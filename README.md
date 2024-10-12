@@ -1,6 +1,3 @@
-
-
-
 # EasyGPT
 
 ## 项目介绍
@@ -140,8 +137,6 @@ curl -X POST http://localhost:8080/gpt/chat \
 ## 开源协议
 
 本项目基于 MIT 许可证开源，详细信息请参阅 [LICENSE](LICENSE) 文件。
-```
 
----
 
-这个格式是完全符合 Markdown 语法的，你可以将其直接复制到 `README.md` 文件中，GitHub 或其他 Markdown 编辑器会正确显示排版。
+
