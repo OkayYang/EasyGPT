@@ -8,13 +8,18 @@ import com.easygpt.client.custom.service.EasyAIEmailSendService;
 import com.easygpt.client.custom.service.EasyAITokenService;
 import com.easygpt.client.custom.service.user.IUserCustomService;
 import com.easygpt.common.core.domain.R;
+import com.easygpt.common.core.utils.JwtUtils;
+import com.easygpt.common.core.utils.StringUtils;
+import com.easygpt.common.security.auth.AuthUtil;
 import com.easygpt.common.core.web.domain.AjaxResult;
+import com.easygpt.common.security.utils.SecurityUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Tag(name = "EasyAI用户端 - 认证")
@@ -32,10 +37,9 @@ public class EasyAIAuthController {
     private EasyAITokenService easyAITokenService;
 
 
-
     @Operation(summary = "获取邮箱验证吗")
     @PostMapping("/send-email-code")
-    public AjaxResult sendEmailCode(@RequestBody @Valid SendEmailCodeReqBody sendEmailCodeReqBody){
+    public AjaxResult sendEmailCode(@RequestBody @Valid SendEmailCodeReqBody sendEmailCodeReqBody) {
         boolean isSent = easyAIEmailSendService.sendCode(sendEmailCodeReqBody);
         if (isSent) {
             return AjaxResult.success("Verification code sent successfully.");
@@ -47,20 +51,21 @@ public class EasyAIAuthController {
 
     @Operation(summary = "用户登陆")
     @PostMapping("/login")
-    public R<?> login(@RequestBody @Valid LoginReqBody loginReqBody){
+    public R<?> login(@RequestBody @Valid LoginReqBody loginReqBody) {
         // 用户登录
         EasyAILoginUser easyAILoginUser = easyAIUserCustomService.login(loginReqBody);
         // 获取登录token
-        return R.ok(easyAITokenService.createToken(easyAILoginUser),"Login successfully.");
+        return R.ok(easyAITokenService.createToken(easyAILoginUser), "Login successfully.");
     }
 
     @Operation(summary = "用户注册")
     @PostMapping("/register")
-    public AjaxResult register(@RequestBody @Valid RegisterReqBody registerReqBody,@RequestParam(value = "invite",required = false) String inviteUid){
+    public AjaxResult register(@RequestBody @Valid RegisterReqBody registerReqBody, @RequestParam(value = "invite", required = false) String inviteUid) {
 
         easyAIUserCustomService.register(registerReqBody, inviteUid);
         return AjaxResult.success("Register successfully.");
 
     }
+
 
 }

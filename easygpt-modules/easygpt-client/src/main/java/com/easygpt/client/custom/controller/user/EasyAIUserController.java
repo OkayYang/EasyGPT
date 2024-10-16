@@ -1,18 +1,48 @@
 package com.easygpt.client.custom.controller.user;
 
+import com.easygpt.client.custom.model.EasyAILoginUser;
+import com.easygpt.client.custom.service.EasyAITokenService;
 import com.easygpt.common.core.utils.StringUtils;
+import com.easygpt.common.core.web.domain.AjaxResult;
+import com.easygpt.common.security.auth.AuthUtil;
+import com.easygpt.common.security.utils.SecurityUtils;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Tag(name = "EasyAI用户端 - 用户")
 @RestController
 @RequestMapping("/easyai/user")
 @Validated
 public class EasyAIUserController {
+
+    @Autowired
+    private EasyAITokenService easyAITokenService;
+
+
+    @DeleteMapping("/logout")
+    public AjaxResult gptLogout(HttpServletRequest request) {
+        String token = SecurityUtils.getToken(request);
+        if (StringUtils.isNotEmpty(token)) {
+            // 删除用户缓存记录
+            AuthUtil.logoutByToken(token);
+        }
+        return AjaxResult.success("Logout successfully.");
+    }
+
+    @PostMapping("/refresh")
+    public AjaxResult refresh(HttpServletRequest request) {
+        EasyAILoginUser loginUser = easyAITokenService.getLoginUser(request);
+        if (StringUtils.isNotNull(loginUser)) {
+            // 刷新令牌有效期
+            easyAITokenService.refreshToken(loginUser);
+            return AjaxResult.success("successfully refresh token.");
+        }
+        return AjaxResult.error("refresh token is empty.");
+    }
 
 
 }
