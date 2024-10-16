@@ -41,16 +41,14 @@ public class EasyAIEmailSendService {
         System.out.println("redisKey: " + redisKey);
         System.out.println("verificationCode:" + verificationCode);
 
-        redisService.setCacheObject(redisKey, verificationCode, EasyAIConstants.EMAIL_CODE_EXPIRATION, TimeUnit.MINUTES);
-        return true;
-        // 4. 发送邮件
-//        if (sendEmail(email, verificationCode)) {
-//            // 5. 将验证码存入 Redis，设置过期时间
-//            redisService.setCacheObject(redisKey, verificationCode, EasyAIConstants.EMAIL_CODE_EXPIRATION, TimeUnit.MINUTES);
-//            return true;
-//        } else {
-//            return false;
-//        }
+        //4. 发送邮件
+        if (sendEmail(email, verificationCode)) {
+            // 5. 将验证码存入 Redis，设置过期时间
+            redisService.setCacheObject(redisKey, verificationCode, EasyAIConstants.EMAIL_CODE_EXPIRATION, TimeUnit.MINUTES);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private String generateVerificationCode() {

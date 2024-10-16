@@ -154,7 +154,7 @@ public class IUserCustomServiceImpl  implements IUserCustomService {
     public UserInfoRespBody getUserInfo(Long userId) {
         UserInfoRespBody userInfoRespBody = new UserInfoRespBody();
         User user = userMapper.selectUserById(userId);
-        BeanUtils.copyProperties(userInfoRespBody,userMapper.selectUserById(userId));
+        BeanUtils.copyProperties(user, userInfoRespBody);
         return userInfoRespBody;
     }
 

@@ -7,7 +7,8 @@ public class EasyAIConstants {
     public static final long EMAIL_CODE_EXPIRATION = 5;
 
     /**
-     * token用户标识
+     * token类型
      */
-    public static final String TOKEN_PREFIX_CLIENT = "client_";
+    public static final String NAME = "EasyAI";
+
 }

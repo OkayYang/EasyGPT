@@ -46,4 +46,9 @@ public class SecurityConstants
      * 角色权限
      */
     public static final String ROLE_PERMISSION = "role_permission";
+
+    /**
+     * token类别
+     */
+    public static final String TOKEN_TYPE = "token_type";
 }

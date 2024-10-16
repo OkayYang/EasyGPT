@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpServletRequest;
 
+import com.easygpt.client.custom.constant.EasyAIConstants;
 import com.easygpt.client.custom.model.EasyAILoginUser;
+import com.easygpt.common.core.constant.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,6 @@ import com.easygpt.common.core.utils.ip.IpUtils;
 import com.easygpt.common.core.utils.uuid.IdUtils;
 import com.easygpt.common.redis.service.RedisService;
 import com.easygpt.common.security.utils.SecurityUtils;
-import com.easygpt.system.api.model.LoginUser;
-
 /**
  * token验证处理
  *
@@ -64,6 +64,7 @@ public class EasyAITokenService
         claimsMap.put(SecurityConstants.USER_KEY, token);
         claimsMap.put(SecurityConstants.DETAILS_USER_ID, userId);
         claimsMap.put(SecurityConstants.DETAILS_USERNAME, userName);
+        claimsMap.put(SecurityConstants.TOKEN_TYPE, EasyAIConstants.NAME);
 
         // 接口返回信息
         Map<String, Object> rspMap = new HashMap<String, Object>();
