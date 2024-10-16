@@ -1,7 +1,9 @@
 package com.easygpt.client.custom.controller.user;
 
+import com.easygpt.client.custom.controller.user.vo.UserInfoRespBody;
 import com.easygpt.client.custom.model.EasyAILoginUser;
 import com.easygpt.client.custom.service.EasyAITokenService;
+import com.easygpt.client.custom.service.user.IUserCustomService;
 import com.easygpt.common.core.utils.StringUtils;
 import com.easygpt.common.core.web.domain.AjaxResult;
 import com.easygpt.common.security.auth.AuthUtil;
@@ -21,6 +23,8 @@ public class EasyAIUserController {
 
     @Autowired
     private EasyAITokenService easyAITokenService;
+    @Autowired
+    private IUserCustomService easyAIUserCustomService;
 
 
     @DeleteMapping("/logout")
@@ -42,6 +46,24 @@ public class EasyAIUserController {
             return AjaxResult.success("successfully refresh token.");
         }
         return AjaxResult.error("refresh token is empty.");
+    }
+
+    /**
+     * 获取用户信息
+     *
+     * @return 用户信息
+     */
+    @GetMapping("/getInfo")
+    public AjaxResult getUserInfo(HttpServletRequest request) {
+        EasyAILoginUser loginUser = easyAITokenService.getLoginUser(request);
+        if (StringUtils.isNotNull(loginUser)) {
+            // 刷新令牌有效期
+            UserInfoRespBody userInfoRespBody = easyAIUserCustomService.getUserInfo(loginUser.getUserid());
+            return AjaxResult.success(userInfoRespBody);
+
+        }
+        //未登陆
+        return AjaxResult.error("Please login first.");
     }
 
 

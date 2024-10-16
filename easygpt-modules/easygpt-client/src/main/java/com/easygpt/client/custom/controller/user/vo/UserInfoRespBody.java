@@ -1,4 +1,4 @@
-package com.easygpt.client.custom.controller.auth.vo;
+package com.easygpt.client.custom.controller.user.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

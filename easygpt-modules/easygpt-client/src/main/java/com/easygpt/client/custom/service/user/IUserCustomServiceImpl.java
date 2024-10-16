@@ -5,6 +5,7 @@ import com.easygpt.client.base.mapper.UserMapper;
 import com.easygpt.client.base.service.impl.UserServiceImpl;
 import com.easygpt.client.custom.controller.auth.vo.LoginReqBody;
 import com.easygpt.client.custom.controller.auth.vo.RegisterReqBody;
+import com.easygpt.client.custom.controller.user.vo.UserInfoRespBody;
 import com.easygpt.client.custom.enums.EmailCodeSceneEnum;
 import com.easygpt.client.custom.mapper.UserCustomMapper;
 import com.easygpt.client.custom.model.EasyAILoginUser;
@@ -19,6 +20,7 @@ import com.easygpt.common.core.utils.StringUtils;
 import com.easygpt.common.core.utils.ip.IpUtils;
 import com.easygpt.common.redis.service.RedisService;
 import com.easygpt.common.security.utils.SecurityUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -146,6 +148,14 @@ public class IUserCustomServiceImpl  implements IUserCustomService {
         }
         redisService.deleteObject(redisKey);
 
+    }
+
+    @Override
+    public UserInfoRespBody getUserInfo(Long userId) {
+        UserInfoRespBody userInfoRespBody = new UserInfoRespBody();
+        User user = userMapper.selectUserById(userId);
+        BeanUtils.copyProperties(userInfoRespBody,userMapper.selectUserById(userId));
+        return userInfoRespBody;
     }
 
 
