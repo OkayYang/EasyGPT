@@ -68,6 +68,12 @@
             <artifactId>easygpt-common-log</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.easygpt</groupId>
+            <artifactId>easygpt-common-email</artifactId>
+        </dependency>
+
         <!-- RuoYi Common Swagger -->
         <dependency>
             <groupId>com.easygpt</groupId>

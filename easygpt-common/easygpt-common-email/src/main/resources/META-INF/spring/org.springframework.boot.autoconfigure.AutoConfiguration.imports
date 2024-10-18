@@ -1,0 +1,2 @@
+com.easygpt.common.email.configure.EmailConfig
+com.easygpt.common.email.service.EmailService

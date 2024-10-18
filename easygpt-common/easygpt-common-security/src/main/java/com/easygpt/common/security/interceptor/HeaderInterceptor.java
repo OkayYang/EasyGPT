@@ -6,6 +6,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import com.easygpt.common.core.constant.SecurityConstants;
 import com.easygpt.common.core.context.SecurityContextHolder;
+import com.easygpt.common.core.utils.JwtUtils;
 import com.easygpt.common.core.utils.ServletUtils;
 import com.easygpt.common.core.utils.StringUtils;
 import com.easygpt.common.security.auth.AuthUtil;
@@ -35,12 +36,17 @@ public class HeaderInterceptor implements AsyncHandlerInterceptor
         String token = SecurityUtils.getToken();
         if (StringUtils.isNotEmpty(token))
         {
-            LoginUser loginUser = AuthUtil.getLoginUser(token);
-            if (StringUtils.isNotNull(loginUser))
-            {
-                AuthUtil.verifyLoginUserExpire(loginUser);
-                SecurityContextHolder.set(SecurityConstants.LOGIN_USER, loginUser);
+            String userType = JwtUtils.getValue(JwtUtils.parseToken(token), SecurityConstants.TOKEN_TYPE);
+            if (StringUtils.isEmpty(userType)){
+                LoginUser loginUser = AuthUtil.getLoginUser(token);
+                if (StringUtils.isNotNull(loginUser))
+                {
+                    AuthUtil.verifyLoginUserExpire(loginUser);
+                    SecurityContextHolder.set(SecurityConstants.LOGIN_USER, loginUser);
+                }
+
             }
+
         }
         return true;
     }

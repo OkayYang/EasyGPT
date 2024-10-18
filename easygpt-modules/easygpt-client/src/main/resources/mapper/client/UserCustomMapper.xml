@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easygpt.client.custom.mapper.UserCustomMapper">
+
+    <resultMap type="User" id="UserResult">
+        <result property="id"    column="id"    />
+        <result property="username"    column="username"    />
+        <result property="nickname"    column="nickname"    />
+        <result property="password"    column="password"    />
+        <result property="avatar"    column="avatar"    />
+        <result property="power"    column="power"    />
+        <result property="chatConfigJson"    column="chat_config_json"    />
+        <result property="chatRolesJson"    column="chat_roles_json"    />
+        <result property="chatModelsJson"    column="chat_models_json"    />
+        <result property="status"    column="status"    />
+        <result property="vip"    column="vip"    />
+        <result property="expiredTime"    column="expired_time"    />
+        <result property="loginIp"    column="login_ip"    />
+        <result property="loginDate"    column="login_date"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectUserVo">
+        select id, username, nickname, password, avatar, power, chat_config_json, chat_roles_json, chat_models_json, status, vip, expired_time, login_ip, login_date, create_time, update_time from chatgpt_user
+    </sql>
+    <select id="selectUserByUserName" parameterType="String">
+        <include refid="selectUserVo"/>
+        where username = #{username}
+    </select>
+
+</mapper>

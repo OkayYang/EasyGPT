@@ -199,6 +199,13 @@
                 <version>${easygpt.version}</version>
             </dependency>
 
+            <!-- 邮件服务 -->
+            <dependency>
+                <groupId>com.easygpt</groupId>
+                <artifactId>easygpt-common-email</artifactId>
+                <version>${easygpt.version}</version>
+            </dependency>
+
             <!-- 系统接口 -->
             <dependency>
                 <groupId>com.easygpt</groupId>

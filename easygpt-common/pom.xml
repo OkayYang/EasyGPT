@@ -17,6 +17,7 @@
         <module>easygpt-common-security</module>
         <module>easygpt-common-datascope</module>
         <module>easygpt-common-datasource</module>
+        <module>easygpt-common-email</module>
     </modules>
 
     <artifactId>easygpt-common</artifactId>
