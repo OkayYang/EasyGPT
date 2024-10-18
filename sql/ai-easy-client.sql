@@ -25,34 +25,42 @@ FOREIGN_KEY_CHECKS = 0;
 USE
 `ai-easy-client`;
 -- ----------------------------
--- Table structure for chatgpt_user
+-- Table structure for easyai_user
 -- ----------------------------
-DROP TABLE IF EXISTS `chatgpt_user`;
-CREATE TABLE `chatgpt_user` (
-                                `id` int NOT NULL AUTO_INCREMENT,
-                                `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户名',
-                                `nickname` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '昵称',
-                                `password` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '密码',
-                                `avatar` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '头像',
-                                `power` int DEFAULT '0' COMMENT '剩余算力',
-                                `chat_config_json` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT '聊天配置json',
-                                `chat_roles_json` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT '聊天角色 json',
-                                `chat_models_json` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT 'AI模型 json',
-                                `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0' COMMENT '帐号状态（0正常 1停用 2删除）',
-                                `vip` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0' COMMENT '会员状态（0普通 1会员）',
-                                `expired_time` datetime DEFAULT NULL COMMENT '用户会员过期时间',
-                                `login_ip` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '最后登录 IP',
-                                `login_date` datetime DEFAULT NULL COMMENT '最后登录时间',
-                                `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-                                `update_time` datetime DEFAULT NULL COMMENT '更新时间',
-                                PRIMARY KEY (`id`) USING BTREE,
-                                UNIQUE KEY `username` (`username`) USING BTREE
+DROP TABLE IF EXISTS `easyai_user`;
+CREATE TABLE `easyai_user` (
+                               `id` int NOT NULL AUTO_INCREMENT,
+                               `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '用户名',
+                               `nickname` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '昵称',
+                               `password` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '密码',
+                               `avatar` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '头像',
+                               `power` int DEFAULT '0' COMMENT '剩余算力',
+                               `chat_config_json` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT '聊天配置json',
+                               `chat_roles_json` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT '聊天角色 json',
+                               `chat_models_json` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT 'AI模型 json',
+                               `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0' COMMENT '帐号状态（0正常 1停用 2删除）',
+                               `vip` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT '0' COMMENT '会员状态（0普通 1会员）',
+                               `expired_time` datetime DEFAULT NULL COMMENT '用户会员过期时间',
+                               `login_ip` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '最后登录 IP',
+                               `login_date` datetime DEFAULT NULL COMMENT '最后登录时间',
+                               `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                               `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+                               PRIMARY KEY (`id`) USING BTREE,
+                               UNIQUE KEY `username` (`username`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 -- ----------------------------
--- Records of chatgpt_user
+-- Records of easyai_user
 -- ----------------------------
 BEGIN;
+INSERT INTO `easyai_user` (`id`, `username`, `nickname`, `password`, `avatar`, `power`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `status`, `vip`, `expired_time`, `login_ip`, `login_date`, `create_time`, `update_time`) VALUES (108, '1347456958@qq.com', 'rick', '$2a$10$knofM1WzLZ./WzkoobWTz.NVwKQAITCit6KiUbzKeK6nrkCY6VUNe', 'http://127.0.0.1:9300/statics/2024/10/16/b_bb7f596366502cc7c181c3c5654551b0_20241016110341A001.jpg', 1231, NULL, NULL, NULL, '0', '0', NULL, NULL, NULL, '2024-07-14 11:32:02', '2024-10-16 11:03:43');
+INSERT INTO `easyai_user` (`id`, `username`, `nickname`, `password`, `avatar`, `power`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `status`, `vip`, `expired_time`, `login_ip`, `login_date`, `create_time`, `update_time`) VALUES (109, 'xuxiaoyang@qq.com', NULL, '$2a$10$ltHtvQQKDUpmdcz/mzGlr.8oJmxqoX0bOwtDgDajpo5rCwCV/4DVi', NULL, 0, NULL, NULL, NULL, '0', '0', NULL, NULL, NULL, '2024-07-28 13:35:53', NULL);
+INSERT INTO `easyai_user` (`id`, `username`, `nickname`, `password`, `avatar`, `power`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `status`, `vip`, `expired_time`, `login_ip`, `login_date`, `create_time`, `update_time`) VALUES (110, '1900516807@qq.com', NULL, '$2a$10$q0BwDImus66Ds0lUQJbtAuXB8IF//N7iavLyaGljsfLB/nW4pU5MC', NULL, 0, NULL, NULL, NULL, '0', '0', NULL, NULL, NULL, '2024-07-28 15:43:44', NULL);
+INSERT INTO `easyai_user` (`id`, `username`, `nickname`, `password`, `avatar`, `power`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `status`, `vip`, `expired_time`, `login_ip`, `login_date`, `create_time`, `update_time`) VALUES (111, 'xuxiaoyang168@qq.com', NULL, '$2a$10$yd9SSMQhnCsgQFDz6NUn9OnTN3gCML/hpGJk5ycQQTy5lLWH5uO5G', NULL, 0, NULL, NULL, NULL, '0', '0', NULL, NULL, NULL, '2024-07-28 16:53:48', NULL);
+INSERT INTO `easyai_user` (`id`, `username`, `nickname`, `password`, `avatar`, `power`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `status`, `vip`, `expired_time`, `login_ip`, `login_date`, `create_time`, `update_time`) VALUES (112, 'xuxiaoyang@gmail.com', NULL, '$2a$10$VslVVZ/ETwxeuySQgAvnGONdq1FTNIzmsFAV79CW6XWAqYPv3uyu.', NULL, 0, NULL, NULL, NULL, '0', '0', NULL, NULL, NULL, '2024-07-28 16:55:33', NULL);
+INSERT INTO `easyai_user` (`id`, `username`, `nickname`, `password`, `avatar`, `power`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `status`, `vip`, `expired_time`, `login_ip`, `login_date`, `create_time`, `update_time`) VALUES (113, 'yang@gmail.com', NULL, '$2a$10$uhNXEe6UpaLlDReZMPHDduCxrGydvMprLpYxUKDiWW3ZzSHeIqUBq', NULL, 0, NULL, NULL, NULL, '0', '0', NULL, NULL, NULL, '2024-07-28 22:45:33', NULL);
+INSERT INTO `easyai_user` (`id`, `username`, `nickname`, `password`, `avatar`, `power`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `status`, `vip`, `expired_time`, `login_ip`, `login_date`, `create_time`, `update_time`) VALUES (114, 'yang12@gmail.com', NULL, '$2a$10$Li/82U5cOQ5eeTT5wXbRDeeKizV5TX.ElbfTUUMzA4MIpSzecdoPm', NULL, 0, NULL, NULL, NULL, '0', '0', NULL, NULL, NULL, '2024-07-28 22:46:27', NULL);
+INSERT INTO `easyai_user` (`id`, `username`, `nickname`, `password`, `avatar`, `power`, `chat_config_json`, `chat_roles_json`, `chat_models_json`, `status`, `vip`, `expired_time`, `login_ip`, `login_date`, `create_time`, `update_time`) VALUES (115, '666@qq.com', NULL, '$2a$10$AxWAPjtoWXRV8LppkA6xauerRsE5DDZXkqhroqOR3iMssN0gEHwjK', NULL, 0, NULL, NULL, NULL, '0', '0', NULL, '127.0.0.1', '2024-10-16 17:59:45', NULL, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -88,7 +96,7 @@ CREATE TABLE `gen_table` (
 -- Records of gen_table
 -- ----------------------------
 BEGIN;
-INSERT INTO `gen_table` (`table_id`, `table_name`, `table_comment`, `sub_table_name`, `sub_table_fk_name`, `class_name`, `tpl_category`, `tpl_web_type`, `package_name`, `module_name`, `business_name`, `function_name`, `function_author`, `gen_type`, `gen_path`, `options`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`) VALUES (1, 'chatgpt_user', '用户表', NULL, NULL, 'User', 'crud', 'element-ui', 'com.easygpt.client.base', 'client', 'user', '用户', 'xiaoyang', '0', '/', '{\"parentMenuId\":\"2000\"}', 'admin', '2024-10-15 21:20:29', '', '2024-10-16 16:28:23', NULL);
+INSERT INTO `gen_table` (`table_id`, `table_name`, `table_comment`, `sub_table_name`, `sub_table_fk_name`, `class_name`, `tpl_category`, `tpl_web_type`, `package_name`, `module_name`, `business_name`, `function_name`, `function_author`, `gen_type`, `gen_path`, `options`, `create_by`, `create_time`, `update_by`, `update_time`, `remark`) VALUES (1, 'easyai_user', '用户表', NULL, NULL, 'User', 'crud', 'element-ui', 'com.easygpt.client.base', 'client', 'user', '用户', 'xiaoyang', '0', '/', '{\"parentMenuId\":\"2000\"}', 'admin', '2024-10-15 21:20:29', '', '2024-10-16 16:28:23', NULL);
 COMMIT;
 
 -- ----------------------------

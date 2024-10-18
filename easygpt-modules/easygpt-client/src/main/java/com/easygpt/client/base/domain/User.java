@@ -8,7 +8,7 @@ import com.easygpt.common.core.annotation.Excel;
 import com.easygpt.common.core.web.domain.BaseEntity;
 
 /**
- * 用户对象 chatgpt_user
+ * 用户对象 easyai_user
  * 
  * @author xiaoyang
  * @date 2024-10-16

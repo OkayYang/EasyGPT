@@ -17,14 +17,6 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
-      <el-form-item label="剩余算力" prop="power">
-        <el-input
-          v-model="queryParams.power"
-          placeholder="请输入剩余算力"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
       <el-form-item label="帐号状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="请选择帐号状态" clearable>
           <el-option
@@ -44,38 +36,6 @@
             :value="dict.value"
           />
         </el-select>
-      </el-form-item>
-      <el-form-item label="会员时间" prop="expiredTime">
-        <el-date-picker clearable
-          v-model="queryParams.expiredTime"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择会员时间">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="登录 IP" prop="loginIp">
-        <el-input
-          v-model="queryParams.loginIp"
-          placeholder="请输入登录 IP"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="登录时间" prop="loginDate">
-        <el-date-picker clearable
-          v-model="queryParams.loginDate"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择登录时间">
-        </el-date-picker>
-      </el-form-item>
-      <el-form-item label="创建时间" prop="createTime">
-        <el-date-picker clearable
-          v-model="queryParams.createTime"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="请选择创建时间">
-        </el-date-picker>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -145,16 +105,6 @@
           <dict-tag :options="dict.type.easyai_user_status" :value="scope.row.status"/>
         </template>
       </el-table-column>
-      <el-table-column label="会员状态" align="center" prop="vip">
-        <template slot-scope="scope">
-          <dict-tag :options="dict.type.easyai_user_vip" :value="scope.row.vip"/>
-        </template>
-      </el-table-column>
-      <el-table-column label="会员时间" align="center" prop="expiredTime" width="180">
-        <template slot-scope="scope">
-          <span>{{ parseTime(scope.row.expiredTime, '{y}-{m}-{d}') }}</span>
-        </template>
-      </el-table-column>
       <el-table-column label="登录 IP" align="center" prop="loginIp" />
       <el-table-column label="登录时间" align="center" prop="loginDate" width="180">
         <template slot-scope="scope">
@@ -190,7 +140,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination
       v-show="total>0"
       :total="total"
@@ -202,29 +152,20 @@
     <!-- 添加或修改用户对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="form.username" placeholder="请输入用户名" />
+        <el-form-item label="账户" prop="username">
+          <el-input v-model="form.username" placeholder="请输入账户" />
+        </el-form-item>
+        <el-form-item v-if="add" label="密码" prop="username">
+          <el-input  type="password" v-model="form.password" placeholder="请设置密码" />
         </el-form-item>
         <el-form-item label="昵称" prop="nickname">
           <el-input v-model="form.nickname" placeholder="请输入昵称" />
         </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input v-model="form.password" placeholder="请输入密码" />
-        </el-form-item>
         <el-form-item label="头像" prop="avatar">
-          <image-upload v-model="form.avatar"/>
+          <image-upload limit="1" v-model="form.avatar"/>
         </el-form-item>
         <el-form-item label="剩余算力" prop="power">
           <el-input v-model="form.power" placeholder="请输入剩余算力" />
-        </el-form-item>
-        <el-form-item label="聊天配置json" prop="chatConfigJson">
-          <el-input v-model="form.chatConfigJson" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="聊天角色 json" prop="chatRolesJson">
-          <el-input v-model="form.chatRolesJson" type="textarea" placeholder="请输入内容" />
-        </el-form-item>
-        <el-form-item label="AI模型 json" prop="chatModelsJson">
-          <el-input v-model="form.chatModelsJson" type="textarea" placeholder="请输入内容" />
         </el-form-item>
         <el-form-item label="帐号状态" prop="status">
           <el-select v-model="form.status" placeholder="请选择帐号状态">
@@ -235,35 +176,6 @@
               :value="dict.value"
             ></el-option>
           </el-select>
-        </el-form-item>
-        <el-form-item label="会员状态" prop="vip">
-          <el-select v-model="form.vip" placeholder="请选择会员状态">
-            <el-option
-              v-for="dict in dict.type.easyai_user_vip"
-              :key="dict.value"
-              :label="dict.label"
-              :value="dict.value"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="会员时间" prop="expiredTime">
-          <el-date-picker clearable
-            v-model="form.expiredTime"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择会员时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="登录 IP" prop="loginIp">
-          <el-input v-model="form.loginIp" placeholder="请输入登录 IP" />
-        </el-form-item>
-        <el-form-item label="登录时间" prop="loginDate">
-          <el-date-picker clearable
-            v-model="form.loginDate"
-            type="date"
-            value-format="yyyy-MM-dd"
-            placeholder="请选择登录时间">
-          </el-date-picker>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -300,19 +212,17 @@ export default {
       title: "",
       // 是否显示弹出层
       open: false,
+
+      //是否新增
+      add:false,
       // 查询参数
       queryParams: {
         pageNum: 1,
         pageSize: 10,
         username: null,
         nickname: null,
-        power: null,
         status: null,
         vip: null,
-        expiredTime: null,
-        loginIp: null,
-        loginDate: null,
-        createTime: null,
       },
       // 表单参数
       form: {},
@@ -321,6 +231,9 @@ export default {
         username: [
           { required: true, message: "用户名不能为空", trigger: "blur" }
         ],
+        password: [
+          { required: true, message: "密码不能为空", trigger: "blur" }
+        ]
       }
     };
   },
@@ -384,11 +297,13 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
+      this.add = true;
       this.title = "添加用户";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
+      this.add = false;
       const id = row.id || this.ids
       getUser(id).then(response => {
         this.form = response.data;
@@ -410,6 +325,7 @@ export default {
             addUser(this.form).then(response => {
               this.$modal.msgSuccess("新增成功");
               this.open = false;
+              this.add = false;
               this.getList();
             });
           }
