@@ -24,7 +24,7 @@
     </resultMap>
 
     <sql id="selectUserVo">
-        select id, username, nickname, password, avatar, power, chat_config_json, chat_roles_json, chat_models_json, status, vip, expired_time, login_ip, login_date, create_time, update_time from chatgpt_user
+        select id, username, nickname, password, avatar, power, chat_config_json, chat_roles_json, chat_models_json, status, vip, expired_time, login_ip, login_date, create_time, update_time from easyai_user
     </sql>
     <select id="selectUserByUserName" parameterType="String">
         <include refid="selectUserVo"/>

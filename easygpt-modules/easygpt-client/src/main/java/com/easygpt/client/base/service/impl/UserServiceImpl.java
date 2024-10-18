@@ -1,7 +1,10 @@
 package com.easygpt.client.base.service.impl;
 
 import java.util.List;
+
+import com.easygpt.client.custom.service.EasyAIPasswordService;
 import com.easygpt.common.core.utils.DateUtils;
+import com.easygpt.common.security.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.easygpt.client.base.mapper.UserMapper;
@@ -54,6 +57,7 @@ public class UserServiceImpl implements IUserService
     public int insertUser(User user)
     {
         user.setCreateTime(DateUtils.getNowDate());
+        user.setPassword(SecurityUtils.encryptPassword(user.getPassword()));
         return userMapper.insertUser(user);
     }
 
