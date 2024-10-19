@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectCardKeyVo">
-        select card_key_id, card_key, reward, create_time, expire_time, category, status from easygpt_card_key
+        select card_key_id, card_key, reward, create_time, expire_time, category, status from easyai_card_key
     </sql>
 
     <select id="selectCardKeyList" parameterType="CardKey" resultMap="CardKeyResult">
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <insert id="insertCardKey" parameterType="CardKey" useGeneratedKeys="true" keyProperty="cardKeyId">
-        insert into easygpt_card_key
+        insert into easyai_card_key
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="cardKey != null">card_key,</if>
             <if test="reward != null">reward,</if>
@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
     <update id="updateCardKey" parameterType="CardKey">
-        update easygpt_card_key
+        update easyai_card_key
         <trim prefix="SET" suffixOverrides=",">
             <if test="cardKey != null">card_key = #{cardKey},</if>
             <if test="reward != null">reward = #{reward},</if>
@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <insert id="batchInsertCardKey" parameterType="java.util.List">
-        INSERT INTO easygpt_card_key (card_key,reward,create_time,expire_time,category,status)
+        INSERT INTO easyai_card_key (card_key,reward,create_time,expire_time,category,status)
         VALUES
         <foreach collection="list" item="item" separator=",">
             (#{item.cardKey}, #{item.reward}, #{item.createTime}, #{item.expireTime},#{item.category},#{item.status})
@@ -76,11 +76,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
     <delete id="deleteCardKeyByCardKeyId" parameterType="Long">
-        delete from easygpt_card_key where card_key_id = #{cardKeyId}
+        delete from easyai_card_key where card_key_id = #{cardKeyId}
     </delete>
 
     <delete id="deleteCardKeyByCardKeyIds" parameterType="String">
-        delete from easygpt_card_key where card_key_id in
+        delete from easyai_card_key where card_key_id in
         <foreach item="cardKeyId" collection="array" open="(" separator="," close=")">
             #{cardKeyId}
         </foreach>
