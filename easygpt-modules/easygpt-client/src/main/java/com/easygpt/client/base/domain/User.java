@@ -8,8 +8,8 @@ import com.easygpt.common.core.annotation.Excel;
 import com.easygpt.common.core.web.domain.BaseEntity;
 
 /**
- * 用户对象 chatgpt_user
- * 
+ * 用户对象 easyai_user
+ *
  * @author xiaoyang
  * @date 2024-10-16
  */
@@ -70,129 +70,129 @@ public class User extends BaseEntity
     @Excel(name = "登录时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date loginDate;
 
-    public void setId(Long id) 
+    public void setId(Long id)
     {
         this.id = id;
     }
 
-    public Long getId() 
+    public Long getId()
     {
         return id;
     }
-    public void setUsername(String username) 
+    public void setUsername(String username)
     {
         this.username = username;
     }
 
-    public String getUsername() 
+    public String getUsername()
     {
         return username;
     }
-    public void setNickname(String nickname) 
+    public void setNickname(String nickname)
     {
         this.nickname = nickname;
     }
 
-    public String getNickname() 
+    public String getNickname()
     {
         return nickname;
     }
-    public void setPassword(String password) 
+    public void setPassword(String password)
     {
         this.password = password;
     }
 
-    public String getPassword() 
+    public String getPassword()
     {
         return password;
     }
-    public void setAvatar(String avatar) 
+    public void setAvatar(String avatar)
     {
         this.avatar = avatar;
     }
 
-    public String getAvatar() 
+    public String getAvatar()
     {
         return avatar;
     }
-    public void setPower(Long power) 
+    public void setPower(Long power)
     {
         this.power = power;
     }
 
-    public Long getPower() 
+    public Long getPower()
     {
         return power;
     }
-    public void setChatConfigJson(String chatConfigJson) 
+    public void setChatConfigJson(String chatConfigJson)
     {
         this.chatConfigJson = chatConfigJson;
     }
 
-    public String getChatConfigJson() 
+    public String getChatConfigJson()
     {
         return chatConfigJson;
     }
-    public void setChatRolesJson(String chatRolesJson) 
+    public void setChatRolesJson(String chatRolesJson)
     {
         this.chatRolesJson = chatRolesJson;
     }
 
-    public String getChatRolesJson() 
+    public String getChatRolesJson()
     {
         return chatRolesJson;
     }
-    public void setChatModelsJson(String chatModelsJson) 
+    public void setChatModelsJson(String chatModelsJson)
     {
         this.chatModelsJson = chatModelsJson;
     }
 
-    public String getChatModelsJson() 
+    public String getChatModelsJson()
     {
         return chatModelsJson;
     }
-    public void setStatus(String status) 
+    public void setStatus(String status)
     {
         this.status = status;
     }
 
-    public String getStatus() 
+    public String getStatus()
     {
         return status;
     }
-    public void setVip(String vip) 
+    public void setVip(String vip)
     {
         this.vip = vip;
     }
 
-    public String getVip() 
+    public String getVip()
     {
         return vip;
     }
-    public void setExpiredTime(Date expiredTime) 
+    public void setExpiredTime(Date expiredTime)
     {
         this.expiredTime = expiredTime;
     }
 
-    public Date getExpiredTime() 
+    public Date getExpiredTime()
     {
         return expiredTime;
     }
-    public void setLoginIp(String loginIp) 
+    public void setLoginIp(String loginIp)
     {
         this.loginIp = loginIp;
     }
 
-    public String getLoginIp() 
+    public String getLoginIp()
     {
         return loginIp;
     }
-    public void setLoginDate(Date loginDate) 
+    public void setLoginDate(Date loginDate)
     {
         this.loginDate = loginDate;
     }
 
-    public Date getLoginDate() 
+    public Date getLoginDate()
     {
         return loginDate;
     }

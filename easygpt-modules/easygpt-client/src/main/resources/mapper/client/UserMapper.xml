@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.easygpt.client.base.mapper.UserMapper">
-    
+
     <resultMap type="User" id="UserResult">
         <result property="id"    column="id"    />
         <result property="username"    column="username"    />
@@ -24,31 +24,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectUserVo">
-        select id, username, nickname, password, avatar, power, chat_config_json, chat_roles_json, chat_models_json, status, vip, expired_time, login_ip, login_date, create_time, update_time from chatgpt_user
+        select id, username, nickname, password, avatar, power, chat_config_json, chat_roles_json, chat_models_json, status, vip, expired_time, login_ip, login_date, create_time, update_time from easyai_user
     </sql>
 
     <select id="selectUserList" parameterType="User" resultMap="UserResult">
         <include refid="selectUserVo"/>
-        <where>  
+        <where>
             <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
             <if test="nickname != null  and nickname != ''"> and nickname like concat('%', #{nickname}, '%')</if>
-            <if test="power != null "> and power = #{power}</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>
             <if test="vip != null  and vip != ''"> and vip = #{vip}</if>
-            <if test="expiredTime != null "> and expired_time = #{expiredTime}</if>
-            <if test="loginIp != null  and loginIp != ''"> and login_ip = #{loginIp}</if>
-            <if test="loginDate != null "> and login_date = #{loginDate}</if>
-            <if test="createTime != null "> and create_time = #{createTime}</if>
         </where>
     </select>
-    
+
     <select id="selectUserById" parameterType="Long" resultMap="UserResult">
         <include refid="selectUserVo"/>
         where id = #{id}
     </select>
-        
+
     <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
-        insert into chatgpt_user
+        insert into easyai_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="username != null and username != ''">username,</if>
             <if test="nickname != null">nickname,</if>
@@ -86,11 +81,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
     <update id="updateUser" parameterType="User">
-        update chatgpt_user
+        update easyai_user
         <trim prefix="SET" suffixOverrides=",">
             <if test="username != null and username != ''">username = #{username},</if>
             <if test="nickname != null">nickname = #{nickname},</if>
+<!--
             <if test="password != null">password = #{password},</if>
+-->
             <if test="avatar != null">avatar = #{avatar},</if>
             <if test="power != null">power = #{power},</if>
             <if test="chatConfigJson != null">chat_config_json = #{chatConfigJson},</if>
@@ -108,11 +105,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteUserById" parameterType="Long">
-        delete from chatgpt_user where id = #{id}
+        delete from easyai_user where id = #{id}
     </delete>
 
     <delete id="deleteUserByIds" parameterType="String">
-        delete from chatgpt_user where id in 
+        delete from easyai_user where id in
         <foreach item="id" collection="array" open="(" separator="," close=")">
             #{id}
         </foreach>
