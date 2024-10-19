@@ -3,7 +3,11 @@ package com.easygpt.client.base.controller;
 import java.util.List;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
+
+import com.easygpt.common.core.utils.uuid.IdUtils;
+import com.easygpt.common.core.utils.uuid.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,7 +28,7 @@ import com.easygpt.common.core.web.page.TableDataInfo;
 
 /**
  * 用户Controller
- * 
+ *
  * @author xiaoyang
  * @date 2024-10-16
  */
@@ -102,4 +106,5 @@ public class UserController extends BaseController
     {
         return toAjax(userService.deleteUserByIds(ids));
     }
+
 }

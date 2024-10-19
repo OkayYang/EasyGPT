@@ -24,7 +24,7 @@ import com.easygpt.system.service.ISysMenuService;
 
 /**
  * 菜单信息
- * 
+ *
  * @author ruoyi
  */
 @RestController
@@ -44,6 +44,16 @@ public class SysMenuController extends BaseController
         Long userId = SecurityUtils.getUserId();
         List<SysMenu> menus = menuService.selectMenuList(menu, userId);
         return success(menus);
+    }
+
+    /**
+     * 获取菜单列表
+     */
+//    @RequiresPermissions("system:menu:list")
+    @GetMapping("/test")
+    public AjaxResult test()
+    {
+        return success("test password");
     }
 
     /**
@@ -146,7 +156,7 @@ public class SysMenuController extends BaseController
 
     /**
      * 获取路由信息
-     * 
+     *
      * @return 路由信息
      */
     @GetMapping("getRouters")
