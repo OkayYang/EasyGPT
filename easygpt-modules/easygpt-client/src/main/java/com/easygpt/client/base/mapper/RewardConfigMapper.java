@@ -58,4 +58,7 @@ public interface RewardConfigMapper
      * @return 结果
      */
     public int deleteRewardConfigByRewardConfigIds(Long[] rewardConfigIds);
+
+
+    public RewardConfig selectRewardConfigByName(String name);
 }

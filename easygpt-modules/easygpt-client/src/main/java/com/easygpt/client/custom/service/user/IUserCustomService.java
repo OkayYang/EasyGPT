@@ -1,5 +1,6 @@
 package com.easygpt.client.custom.service.user;
 
+import com.easygpt.client.base.domain.User;
 import com.easygpt.client.base.service.IUserService;
 import com.easygpt.client.custom.controller.auth.vo.LoginReqBody;
 import com.easygpt.client.custom.controller.auth.vo.RegisterReqBody;
@@ -20,7 +21,7 @@ public interface IUserCustomService {
      * @param registerReqBody 注册信息
      * @param inviteUid 邀请码
      */
-    public void register(RegisterReqBody registerReqBody, String inviteUid);
+    public User register(RegisterReqBody registerReqBody, String inviteUid);
 
     /**
      * 获取用户登陆信息

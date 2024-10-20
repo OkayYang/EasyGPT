@@ -5,32 +5,38 @@
 <mapper namespace="com.easygpt.client.base.mapper.RewardConfigMapper">
 
     <resultMap type="RewardConfig" id="RewardConfigResult">
-        <result property="rewardConfigId"    column="reward_config_id"    />
-        <result property="name"    column="name"    />
-        <result property="reward"    column="reward"    />
-        <result property="detail"    column="detail"    />
-        <result property="createTime"    column="create_time"    />
-        <result property="updateTime"    column="update_time"    />
-        <result property="status"    column="status"    />
+        <result property="rewardConfigId" column="reward_config_id"/>
+        <result property="name" column="name"/>
+        <result property="reward" column="reward"/>
+        <result property="detail" column="detail"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="status" column="status"/>
     </resultMap>
 
     <sql id="selectRewardConfigVo">
-        select reward_config_id, name, reward, detail, create_time, update_time, status from easyai_reward_config
+        select reward_config_id, name, reward, detail, create_time, update_time, status
+        from easyai_reward_config
     </sql>
 
     <select id="selectRewardConfigList" parameterType="RewardConfig" resultMap="RewardConfigResult">
         <include refid="selectRewardConfigVo"/>
         <where>
-            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
-            <if test="reward != null "> and reward = #{reward}</if>
-            <if test="detail != null  and detail != ''"> and detail = #{detail}</if>
-            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="reward != null ">and reward = #{reward}</if>
+            <if test="detail != null  and detail != ''">and detail = #{detail}</if>
+            <if test="status != null  and status != ''">and status = #{status}</if>
         </where>
     </select>
 
     <select id="selectRewardConfigByRewardConfigId" parameterType="Long" resultMap="RewardConfigResult">
         <include refid="selectRewardConfigVo"/>
         where reward_config_id = #{rewardConfigId}
+    </select>
+
+    <select id="selectRewardConfigByName" resultMap="RewardConfigResult">
+        <include refid="selectRewardConfigVo"/>
+        where name=#{name}
     </select>
 
     <insert id="insertRewardConfig" parameterType="RewardConfig" useGeneratedKeys="true" keyProperty="rewardConfigId">
@@ -67,7 +73,9 @@
     </update>
 
     <delete id="deleteRewardConfigByRewardConfigId" parameterType="Long">
-        delete from easyai_reward_config where reward_config_id = #{rewardConfigId}
+        delete
+        from easyai_reward_config
+        where reward_config_id = #{rewardConfigId}
     </delete>
 
     <delete id="deleteRewardConfigByRewardConfigIds" parameterType="String">
