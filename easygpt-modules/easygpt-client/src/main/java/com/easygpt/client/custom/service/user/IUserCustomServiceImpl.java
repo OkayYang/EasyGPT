@@ -140,7 +140,6 @@ public class IUserCustomServiceImpl  implements IUserCustomService {
             } catch (NumberFormatException e) {
                 System.out.println("邀请码错误");
             }
-
         }
         int result = userMapper.insertUser(newUser);
         if (result != 1) {
