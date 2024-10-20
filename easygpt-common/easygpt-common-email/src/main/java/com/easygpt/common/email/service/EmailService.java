@@ -28,7 +28,7 @@ public class EmailService
     @Autowired
     private JavaMailSender mailSender;
 
-    private final String FROM = "EasyGPT助手<1900516807@qq.com>";
+    private final String FROM = "EasyGPT助手<1731849420@qq.com>";
 
     /**
      * 简单文本邮件

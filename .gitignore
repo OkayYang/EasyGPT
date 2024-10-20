@@ -24,6 +24,7 @@ target/
 *.iws
 *.iml
 *.ipr
+easygpt-common/easygpt-common-email/src
 
 ### JRebel ###
 rebel.xml

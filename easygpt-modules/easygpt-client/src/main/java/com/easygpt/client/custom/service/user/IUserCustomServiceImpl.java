@@ -3,6 +3,7 @@ package com.easygpt.client.custom.service.user;
 import com.easygpt.client.base.domain.User;
 import com.easygpt.client.base.mapper.UserMapper;
 import com.easygpt.client.base.service.impl.UserServiceImpl;
+import com.easygpt.client.custom.annotation.InviteReward;
 import com.easygpt.client.custom.controller.auth.vo.LoginReqBody;
 import com.easygpt.client.custom.controller.auth.vo.RegisterReqBody;
 import com.easygpt.client.custom.controller.user.vo.UserInfoRespBody;
@@ -32,8 +33,8 @@ public class IUserCustomServiceImpl  implements IUserCustomService {
     @Autowired
     private UserCustomMapper easyAIUserCustomMapper;
 
-    @Autowired
-    private UserMapper userMapper;
+//    @Autowired
+//    private UserMapper userMapper;
 
     @Autowired
     private RedisService redisService;
@@ -77,7 +78,7 @@ public class IUserCustomServiceImpl  implements IUserCustomService {
 
         user.setLoginIp(IpUtils.getIpAddr());
         user.setLoginDate(DateUtils.getNowDate());
-        userMapper.updateUser(user);
+        easyAIUserCustomMapper.updateUser(user);
 
         return easyAILoginUser;
     }
@@ -85,7 +86,8 @@ public class IUserCustomServiceImpl  implements IUserCustomService {
     /**
      * 注册
      */
-    public void register(RegisterReqBody registerReqBody,String inviteUid) {
+    @InviteReward
+    public User register(RegisterReqBody registerReqBody,String inviteUid) {
         String username = registerReqBody.getUsername();
         String password = registerReqBody.getPassword();
         String code = registerReqBody.getCode();
@@ -131,29 +133,18 @@ public class IUserCustomServiceImpl  implements IUserCustomService {
         newUser.setUsername(username);
         newUser.setPassword(SecurityUtils.encryptPassword(password));
         newUser.setCreateTime(DateUtils.getNowDate());
-
-        if (inviteUid != null) {
-            try {
-                Long.parseLong(inviteUid);
-                //邀请码记录,发放奖励待完善
-                //TODO
-            } catch (NumberFormatException e) {
-                System.out.println("邀请码错误");
-            }
-
-        }
-        int result = userMapper.insertUser(newUser);
+        int result = easyAIUserCustomMapper.insertUser(newUser);
         if (result != 1) {
             throw new ServiceException("注册失败");
         }
         redisService.deleteObject(redisKey);
-
+        return newUser;
     }
 
     @Override
     public UserInfoRespBody getUserInfo(Long userId) {
         UserInfoRespBody userInfoRespBody = new UserInfoRespBody();
-        User user = userMapper.selectUserById(userId);
+        User user = easyAIUserCustomMapper.selectUserById(userId);
         BeanUtils.copyProperties(user, userInfoRespBody);
         return userInfoRespBody;
     }
